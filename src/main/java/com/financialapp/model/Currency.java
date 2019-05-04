@@ -4,10 +4,10 @@ public class Currency {
 
     String typeOfCurrency;
     String code;
-    float buyRate;
-    float sellRate;
+    String buyRate;
+    String sellRate;
 
-    public Currency(String typeOfCurrency, String code, float buyRate, float sellRate) {
+    public Currency(String typeOfCurrency, String code, String buyRate, String sellRate) {
         this.typeOfCurrency = typeOfCurrency;
         this.code = code;
         this.buyRate = buyRate;
@@ -30,19 +30,19 @@ public class Currency {
         this.code = code;
     }
 
-    public float getBuyRate() {
+    public String getBuyRate() {
         return buyRate;
     }
 
-    public void setBuyRate(float buyRate) {
+    public void setBuyRate(String buyRate) {
         this.buyRate = buyRate;
     }
 
-    public float getSellRate() {
+    public String getSellRate() {
         return sellRate;
     }
 
-    public void setSellRate(float sellRate) {
+    public void setSellRate(String sellRate) {
         this.sellRate = sellRate;
     }
 }

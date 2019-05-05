@@ -39,7 +39,6 @@ public class CurrencyServiceImp implements CurrencyService{
                     }
                 }
             }
-
             return currencies;
         }catch (Exception e){
             currencies.add(new Currency("Dolar","USD","00","00"));

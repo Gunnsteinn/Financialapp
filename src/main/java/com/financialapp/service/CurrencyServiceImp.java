@@ -19,10 +19,14 @@ public class CurrencyServiceImp implements CurrencyService{
 
     public List<Currency> findAllCurrency() {
         try {
-            String webPage = "https://banco.santanderrio.com.ar/exec/cotizacion/index.jsp";
+            String webPageSR = "https://banco.santanderrio.com.ar/exec/cotizacion/index.jsp";
+            String webPage1 = "https://ebankpersonas.bancopatagonia.com.ar/eBanking/usuarios/cotizacionMonedaExtranjera.htm"
+            String webPage2 = "https://www.bancogalicia.com/banca/online/web/Personas/ProductosyServicios/Cotizador"
+            String webPage3 = "http://www.bna.com.ar/Personas" 
+            String webPage4 = "https://www.bbvafrances.com.ar/personas/inversiones/cotizaciones/cotizacion-moneda-extranjera/" 
             List<Currency> currencies = new ArrayList<Currency>();
-            String document1 = Jsoup.connect(webPage).get().html();
-            Document doc = Jsoup.parse(document1);
+            String document = Jsoup.connect(webPageSR).get().html();
+            Document doc = Jsoup.parse(document);
             JSONObject jsonParentObject = new JSONObject();
             for (Element table : doc.select("table")) {
                 for (Element row : table.select("tr")) {
@@ -39,7 +43,6 @@ public class CurrencyServiceImp implements CurrencyService{
                     }
                 }
             }
-
             return currencies;
         }catch (Exception e){
             currencies.add(new Currency("Dolar","USD","00","00"));

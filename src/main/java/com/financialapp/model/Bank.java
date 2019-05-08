@@ -6,11 +6,11 @@ import java.util.List;
 public class Bank {
 
     String bank;
-    List<Currency> currencyList;
+    List<Currency> exchange;
 
-    public Bank(String bank, List<Currency> currencyList) {
+    public Bank(String bank, List<Currency> exchange) {
         this.bank = bank;
-        this.currencyList = currencyList;
+        this.exchange = exchange;
     }
 
 
@@ -22,12 +22,12 @@ public class Bank {
         this.bank = bank;
     }
 
-    public List<Currency> getCurrencyList() {
-        return currencyList;
+    public List<Currency> getExchange() {
+        return exchange;
     }
 
-    public void setCurrencyList(List<Currency> currencyList) {
-        this.currencyList = currencyList;
+    public void setExchange(List<Currency> exchange) {
+        this.exchange = exchange;
     }
 
 }

@@ -111,7 +111,6 @@ public class CurrencyServiceImp implements CurrencyService{
             List<Bank> allCurrencies = new ArrayList<Bank>();
             List<Currency> currenciesBS = findParticularCurrency("BS");
             List<Currency> currenciesBP = findParticularCurrency("BP");
-
             allCurrencies.add(new Bank("Santander Rio",currenciesBS));
             allCurrencies.add(new Bank("Banco Patagonia",currenciesBP));
 

@@ -69,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/service/CurrencyServiceImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="114" column="53" selection-start-line="114" selection-start-column="53" selection-end-line="114" selection-end-column="53" />
+            <state relative-caret-position="324">
+              <caret line="115" column="47" selection-start-line="115" selection-start-column="47" selection-end-line="115" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#801#811#0" expanded="true" />
@@ -308,12 +308,12 @@
       <workItem from="1556989520119" duration="4070000" />
       <workItem from="1557014502872" duration="640000" />
       <workItem from="1557185213969" duration="122000" />
-      <workItem from="1557274568180" duration="7575000" />
+      <workItem from="1557274568180" duration="7906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29863000" />
+    <option name="totallyTimeSpent" value="30194000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -479,8 +479,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/service/CurrencyServiceImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="114" column="53" selection-start-line="114" selection-start-column="53" selection-end-line="114" selection-end-column="53" />
+        <state relative-caret-position="324">
+          <caret line="115" column="47" selection-start-line="115" selection-start-column="47" selection-end-line="115" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#801#811#0" expanded="true" />

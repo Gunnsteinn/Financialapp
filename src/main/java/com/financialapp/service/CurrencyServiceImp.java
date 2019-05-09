@@ -26,8 +26,6 @@ public class CurrencyServiceImp implements CurrencyService{
 
     public List<Currency> findParticularCurrency(String bank) {
         try {
-            System.out.println(bank);
-
             String webPage;
             List<Currency> currency = new ArrayList<Currency>();
             switch (bank) {
@@ -115,6 +113,23 @@ public class CurrencyServiceImp implements CurrencyService{
                         }
                     }
                     break;
+
+                case "BI":
+                    InputStream dolarBI = new URL("https://www.icbc.com.ar/ICBC_CotizacionMonedaWEB/cotizacion/dolar").openStream();
+                    BufferedReader rdBI = new BufferedReader(new InputStreamReader(dolarBI, Charset.forName("UTF-8")));
+                    StringBuilder sbBI = new StringBuilder();
+                    int cpBI;
+                    while ((cpBI = rdBI.read()) != -1) {
+                        sbBI.append((char) cpBI);
+                    }
+
+                    String jsonTextBI = sbBI.toString();
+                    String replaceStringBI = jsonTextBI.replaceAll("\\bvalorCompra\\b", "buyRate");
+                    replaceStringBI = replaceStringBI.replaceAll("\\bvalorVenta\\b", "sellRate");
+                    JSONObject jsonBI = new JSONObject(replaceStringBI);
+                    currency.add(new Currency("Dolar",jsonBI.getString("buyRate"),jsonBI.getString("sellRate")));
+
+                    break;
                 case "BG":
                     InputStream dolar = new URL("https://www.bancogalicia.com/cotizacion/cotizar?currencyId=02&quoteType=SU&quoteId=999").openStream();
                     BufferedReader rd1 = new BufferedReader(new InputStreamReader(dolar, Charset.forName("UTF-8")));
@@ -178,18 +193,13 @@ public class CurrencyServiceImp implements CurrencyService{
 
     public List<Bank> findAllCurrency() {
         try {
-            String webPageBS = "https://banco.santanderrio.com.ar/exec/cotizacion/index.jsp";
-            String webPageBP = "https://ebankpersonas.bancopatagonia.com.ar/eBanking/usuarios/cotizacionMonedaExtranjera.htm";
-            String webPageBG = "https://www.bancogalicia.com/banca/online/web/Personas/ProductosyServicios/Cotizador";
-            String webPageBN = "http://www.bna.com.ar/Personas" ;
-            String webPageBF = "https://www.bbvafrances.com.ar/personas/inversiones/cotizaciones/cotizacion-moneda-extranjera/";
-
             List<Bank> allCurrencies = new ArrayList<Bank>();
             List<Currency> currenciesBS = findParticularCurrency("BS");
             List<Currency> currenciesBP = findParticularCurrency("BP");
             List<Currency> currenciesBF = findParticularCurrency("BF");
             List<Currency> currenciesBN = findParticularCurrency("BN");
             List<Currency> currenciesBG = findParticularCurrency("BG");
+            List<Currency> currenciesBI = findParticularCurrency("BI");
 
 
             allCurrencies.add(new Bank("Santander Rio",currenciesBS));
@@ -197,6 +207,7 @@ public class CurrencyServiceImp implements CurrencyService{
             allCurrencies.add(new Bank("Banco Patagonia",currenciesBP));
             allCurrencies.add(new Bank("BBVA Francés",currenciesBF));
             allCurrencies.add(new Bank("Banco Galicia",currenciesBG));
+            allCurrencies.add(new Bank("Banco ICBC",currenciesBI));
 
             return allCurrencies;
         }catch (Exception e){
@@ -209,6 +220,7 @@ public class CurrencyServiceImp implements CurrencyService{
             allCurrencies.add(new Bank("Banco Patagonia",currency));
             allCurrencies.add(new Bank("BBVA Francés",currency));
             allCurrencies.add(new Bank("Banco Galicia",currency));
+            allCurrencies.add(new Bank("Banco ICBC",currency));
 
             return allCurrencies;
         }

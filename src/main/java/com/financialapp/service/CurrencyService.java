@@ -1,4 +1,4 @@
-package com.financialapp.repository;
+package com.financialapp.service;
 
 import com.financialapp.model.Bank;
 import com.financialapp.model.Currency;

@@ -2,7 +2,7 @@ package com.financialapp.controller;
 
 import com.financialapp.model.Bank;
 import com.financialapp.model.Currency;
-import com.financialapp.repository.CurrencyService;
+import com.financialapp.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

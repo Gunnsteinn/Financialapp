@@ -33,15 +33,14 @@ public class CurrencyServiceImp implements CurrencyService{
         }
     }
 
-    List<Callable<List<Currency>>> callables = Arrays.asList(
-            () -> findParticularCurrency("BP"),
-            () -> findParticularCurrency("BF"),
-            () -> findParticularCurrency("BN"),
-            () -> findParticularCurrency("BG"),
-            () -> findParticularCurrency("BI"),
-            () -> findParticularCurrency("BS")
+    List<Callable<Bank>> callables = Arrays.asList(
+            () -> new Bank("Banco de la Nación Argentina",findParticularCurrency("BN")),
+            () -> new Bank("Santander Rio",findParticularCurrency("BS")),
+            () -> new Bank("Banco BBVA Francés",findParticularCurrency("BF")),
+            () -> new Bank("Banco Galicia",findParticularCurrency("BG")),
+            () -> new Bank("Banco Patagonia",findParticularCurrency("BP")),
+            () -> new Bank("Banco ICBC",findParticularCurrency("BI"))
     );
-
 
     public List<Bank> findAllCurrency() {
         try {
@@ -58,7 +57,7 @@ public class CurrencyServiceImp implements CurrencyService{
                             throw new IllegalStateException(e);
                         }
                     })
-                    .forEach(item -> allCurrencies.add(new Bank("Banco",item)));
+                    .forEach(item -> allCurrencies.add(item));
             System.out.println("Finish: " + (System.currentTimeMillis()/1000-start));
 
 //            List<Currency> currenciesBS = findParticularCurrency("BS");

@@ -37,7 +37,7 @@ public class NacionCrawlerImp implements NacionCrawler {
                         String sell = tds.get(2).text();
                         jsonObject.put("buy", buy);
                         jsonObject.put("sell", sell);
-                        currency.add(new Currency( type, StringUtils.stringToDoubleNumber(buy)/100, StringUtils.stringToDoubleNumber(sell)/100));
+                        currency.add(new Currency( type, StringUtils.stringToDoubleNumber(buy), StringUtils.stringToDoubleNumber(sell)));
                         jsonParentObject4.put(type,jsonObject);
                     }
                 }

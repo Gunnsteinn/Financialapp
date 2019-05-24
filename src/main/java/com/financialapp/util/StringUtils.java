@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StringUtils{
 
-    @Value("#{'${type.currency.list}'.split(',')}")
+    @Value("#{'${currency.properties}'.split(',')}")
     private static List<String> typeOfCurrencyList;
 
     public static String stringNormalize(String s) {

@@ -1,6 +1,7 @@
 package com.financialapp.repository;
 
 import com.financialapp.model.Currency;
+import com.financialapp.util.StringUtils;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 
@@ -34,12 +35,12 @@ public class ICBCCrawlerImp implements ICBCCrawler {
             String replaceStringBI = jsonTextBI.replaceAll("\\bvalorCompra\\b", "buyRate");
             replaceStringBI = replaceStringBI.replaceAll("\\bvalorVenta\\b", "sellRate");
             JSONObject jsonBI = new JSONObject(replaceStringBI);
-            currency.add(new Currency("Dolar", jsonBI.getString("buyRate"), jsonBI.getString("sellRate")));
+            currency.add(new Currency("DOLAR", StringUtils.stringToDoubleNumber(jsonBI.getString("buyRate")), StringUtils.stringToDoubleNumber(jsonBI.getString("sellRate"))));
 
             return currency;
         }catch (Exception e){
-            currency.add(new Currency("Dolar","00","00"));
-            currency.add(new Currency("Euro","00","00"));
+            currency.add(new Currency("Dolar",0.0,0.0));
+            currency.add(new Currency("Euro",0.0,0.0));
 
             return currency;
         }

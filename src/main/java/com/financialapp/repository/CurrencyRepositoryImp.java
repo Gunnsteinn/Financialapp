@@ -48,13 +48,13 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
                 case "BG":
                     return galiciaCrawler.findGaliciaCurrency();
                 default:
-                    currency.add(new Currency("Dolar","00","00"));
-                    currency.add(new Currency("Euro","00","00"));
+                    currency.add(new Currency("Dolar",0.0,0.0));
+                    currency.add(new Currency("Euro",0.0,0.0));
                     return currency;
             }
         }catch (Exception e){
-            currency.add(new Currency("Dolar","00","00"));
-            currency.add(new Currency("Euro","00","00"));
+            currency.add(new Currency("Dolar",0.0,0.0));
+            currency.add(new Currency("Euro",0.0,0.0));
             return currency;
         }
     }

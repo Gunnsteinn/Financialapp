@@ -1,6 +1,7 @@
 package com.financialapp.repository;
 
 import com.financialapp.model.Currency;
+import com.financialapp.util.StringUtils;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +36,7 @@ public class GaliciaCrawlerImp implements GaliciaCrawler {
             String replaceString = jsonText.replaceAll("\\bbuy\\b", "buyRate");
             replaceString = replaceString.replaceAll("\\bsell\\b", "sellRate");
             JSONObject json = new JSONObject(replaceString);
-                            currency.add(new Currency("Dolar",json.getString("buyRate"),json.getString("sellRate")));
+                            currency.add(new Currency("DOLAR", StringUtils.stringToDoubleNumber(json.getString("buyRate")),StringUtils.stringToDoubleNumber(json.getString("sellRate"))));
 
             InputStream euro = new URL("https://www.bancogalicia.com/cotizacion/cotizar?currencyId=98&quoteType=SU&quoteId=999").openStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(euro, Charset.forName("UTF-8")));
@@ -49,11 +50,11 @@ public class GaliciaCrawlerImp implements GaliciaCrawler {
             String replaceString1 = jsonText1.replaceAll("\\bbuy\\b", "buyRate");
             replaceString1 = replaceString1.replaceAll("\\bsell\\b", "sellRate");
             JSONObject json1 = new JSONObject(replaceString1);
-                            currency.add(new Currency("Euro",json1.getString("buyRate"),json1.getString("sellRate")));
+                            currency.add(new Currency("EURO",StringUtils.stringToDoubleNumber(json1.getString("buyRate")),StringUtils.stringToDoubleNumber(json1.getString("sellRate"))));
             return currency;
         }catch (Exception e){
-            currency.add(new Currency("Dolar","00","00"));
-            currency.add(new Currency("Euro","00","00"));
+            currency.add(new Currency("Dolar",0.0,0.0));
+            currency.add(new Currency("Euro",0.0,0.0));
             return currency;
         }
     }

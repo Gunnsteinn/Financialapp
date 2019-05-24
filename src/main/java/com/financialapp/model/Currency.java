@@ -3,10 +3,10 @@ package com.financialapp.model;
 public class Currency {
 
     String typeOfCurrency;
-    String buyRate;
-    String sellRate;
+    Double buyRate;
+    Double sellRate;
 
-    public Currency(String typeOfCurrency, String buyRate, String sellRate) {
+    public Currency(String typeOfCurrency, Double buyRate, Double sellRate) {
         this.typeOfCurrency = typeOfCurrency;
         this.buyRate = buyRate;
         this.sellRate = sellRate;
@@ -20,19 +20,19 @@ public class Currency {
         this.typeOfCurrency = typeOfCurrency;
     }
 
-    public String getBuyRate() {
+    public Double getBuyRate() {
         return buyRate;
     }
 
-    public void setBuyRate(String buyRate) {
+    public void setBuyRate(Double buyRate) {
         this.buyRate = buyRate;
     }
 
-    public String getSellRate() {
+    public Double getSellRate() {
         return sellRate;
     }
 
-    public void setSellRate(String sellRate) {
+    public void setSellRate(Double sellRate) {
         this.sellRate = sellRate;
     }
 }

@@ -1,6 +1,7 @@
 package com.financialapp.repository;
 
 import com.financialapp.model.Currency;
+import com.financialapp.util.StringUtils;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository("SantanderRioCrawler")
-public class SantanderRioSantanderRioCrawlerImp implements SantanderRioCrawler {
+public class SantanderRioSantanderRioCrawlerImp implements SantanderRioCrawler{
     private static List<Currency> currency;
 
     public List<Currency> findSantanderRioCurrency(){
@@ -36,7 +37,7 @@ public class SantanderRioSantanderRioCrawlerImp implements SantanderRioCrawler {
                         String sell = tds.get(2).text();
                         jsonObject.put("buy", buy);
                         jsonObject.put("sell", sell);
-                        currency.add(new Currency(type,buy,sell));
+                        currency.add(new Currency( type, StringUtils.stringToDoubleNumber(buy), StringUtils.stringToDoubleNumber(sell)));
                         jsonParentObject.put(type,jsonObject);
                     }
                 }
@@ -44,8 +45,8 @@ public class SantanderRioSantanderRioCrawlerImp implements SantanderRioCrawler {
 
             return currency;
         }catch (Exception e){
-            currency.add(new Currency("Dolar","00","00"));
-            currency.add(new Currency("Euro","00","00"));
+            currency.add(new Currency("Dolar",0.0,0.0));
+            currency.add(new Currency("Euro",0.0,0.0));
 
             return currency;
         }

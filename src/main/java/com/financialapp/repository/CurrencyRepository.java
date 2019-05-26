@@ -4,10 +4,10 @@ import com.financialapp.model.Bank;
 import com.financialapp.model.Currency;
 import java.util.List;
 
-public interface CurrencyService {
+public interface CurrencyRepository {
 
-    List<Bank> findAllCurrency();
+    List<Currency> findCrawlerCurrency(String bank);
 
-    List<Currency> findParticularCurrency(String bank);
+    List<Bank> findAllCrawlerCurrency();
 
 }

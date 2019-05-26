@@ -2,37 +2,47 @@ package com.financialapp.model;
 
 public class Currency {
 
-    String typeOfCurrency;
-    String buyRate;
-    String sellRate;
+    String type;
+    String code;
+    Double buyRate;
+    Double sellRate;
 
-    public Currency(String typeOfCurrency, String buyRate, String sellRate) {
-        this.typeOfCurrency = typeOfCurrency;
+    public Currency(String type,String code, Double buyRate, Double sellRate) {
+        this.type = type;
+        this.code = code;
         this.buyRate = buyRate;
         this.sellRate = sellRate;
     }
 
-    public String getTypeOfCurrency() {
-        return typeOfCurrency;
+    public String getType() {
+        return type;
     }
 
-    public void setTypeOfCurrency(String typeOfCurrency) {
-        this.typeOfCurrency = typeOfCurrency;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getBuyRate() {
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Double getBuyRate() {
         return buyRate;
     }
 
-    public void setBuyRate(String buyRate) {
+    public void setBuyRate(Double buyRate) {
         this.buyRate = buyRate;
     }
 
-    public String getSellRate() {
+    public Double getSellRate() {
         return sellRate;
     }
 
-    public void setSellRate(String sellRate) {
+    public void setSellRate(Double sellRate) {
         this.sellRate = sellRate;
     }
 }

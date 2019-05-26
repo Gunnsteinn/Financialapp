@@ -11,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/util/StringUtils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="341">
-              <caret line="40" column="64" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="64" />
+              <caret line="39" column="64" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1183#1184#0" expanded="true" />
@@ -25,38 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/ICBCCrawlerImp.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/model/Currency.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/GaliciaCrawlerImp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="35" column="79" lean-forward="true" selection-start-line="35" selection-start-column="79" selection-end-line="35" selection-end-column="79" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/FrancesCrawlerImp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="48" column="43" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -91,6 +64,7 @@
       <find>public sta</find>
       <find>exchan</find>
       <find>EURO</find>
+      <find>typeO</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -126,7 +100,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/repository/GenericCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/repository/CurrencyRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/FinancialappApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/financialapp/model/Currency.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/controller/RestApiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/repository/GaliciaCrawlerImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/repository/ICBCCrawlerImp.java" />
@@ -137,6 +110,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/repository/NacionCrawlerImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/repository/CurrencyRepositoryImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/financialapp/util/StringUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/financialapp/model/Currency.java" />
       </list>
     </option>
   </component>
@@ -195,6 +169,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="financialapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Financialapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Financialapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="financialapp" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Financialapp" type="b2602c69:ProjectViewProjectNode" />
@@ -294,12 +277,12 @@
       <workItem from="1558484738590" duration="580000" />
       <workItem from="1558490702004" duration="145000" />
       <workItem from="1558653504652" duration="12026000" />
-      <workItem from="1558827857389" duration="16109000" />
+      <workItem from="1558827857389" duration="16446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105227000" />
+    <option name="totallyTimeSpent" value="105564000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -314,7 +297,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18986385" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18986385" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -322,7 +305,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.23076923" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35679215" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4893617" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -571,13 +554,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/model/Currency.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/CurrencyRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -721,12 +697,19 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/util/StringUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
-          <caret line="40" column="64" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="64" />
+          <caret line="39" column="64" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1183#1184#0" expanded="true" />
             <element signature="e#1259#1260#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/model/Currency.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>

@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 public class StringUtils{
 
     private static List<String> typeOfCurrencyList = Arrays.asList("DOLAR", "EURO", "REAL", "URUGUAYOS");
-    private static List<String> codeOfCurrencyList = Arrays.asList("USD", "EUR", "BRL", "UYU");
     private static Map<String, String> mapOCurrencyfCodes  = new HashMap<String, String>() {{
         put("DOLAR", "USD");
         put("EURO", "EUR");

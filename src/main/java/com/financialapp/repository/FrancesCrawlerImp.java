@@ -13,10 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository("francesCrawler")
-public class FrancesCrawlerImp implements FrancesCrawler {
-    private static List<Currency> currency;
+public class FrancesCrawlerImp implements GenericCrawler {
 
-    public List<Currency> findFrancesCurrency(){
+    public List<Currency> findCurrency(){
         return this.CrawlerFrancesCurrency();
     }
 
@@ -33,11 +32,12 @@ public class FrancesCrawlerImp implements FrancesCrawler {
                     Elements tds = row.select("td");
                     if (tds.size() > 0){
                         String type = tds.get(0).text();
+                        String code = tds.get(0).text();
                         String buy = tds.get(1).text();
                         String sell = tds.get(2).text();
                         jsonObject.put("buy", buy);
                         jsonObject.put("sell", sell);
-                        currency.add(new Currency( type, StringUtils.stringToDoubleNumber(buy), StringUtils.stringToDoubleNumber(sell)));
+                        currency.add(new Currency( StringUtils.stringTypeNormalize(type), StringUtils.stringCodeNormalize(code), StringUtils.stringToDoubleNumber(buy), StringUtils.stringToDoubleNumber(sell)));
                         jsonParentObject3.put(type,jsonObject);
                     }
                 }
@@ -45,9 +45,8 @@ public class FrancesCrawlerImp implements FrancesCrawler {
 
             return currency;
         }catch (Exception e){
-            currency.add(new Currency("Dolar",0.0,0.0));
-            currency.add(new Currency("Euro",0.0,0.0));
-
+            currency.add(new Currency("DOLAR","USD",0.0,0.0));
+            currency.add(new Currency("EURO","EUR",0.0,0.0));
             return currency;
         }
     }

@@ -14,10 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository("icbcCrawler")
-public class ICBCCrawlerImp implements ICBCCrawler {
-    private static List<Currency> currency;
+public class ICBCCrawlerImp implements GenericCrawler {
 
-    public List<Currency> findICBCCurrency() {
+    public List<Currency> findCurrency() {
         return this.CrawlerICBCCurrency();
     }
     private List<Currency> CrawlerICBCCurrency() {
@@ -35,12 +34,11 @@ public class ICBCCrawlerImp implements ICBCCrawler {
             String replaceStringBI = jsonTextBI.replaceAll("\\bvalorCompra\\b", "buyRate");
             replaceStringBI = replaceStringBI.replaceAll("\\bvalorVenta\\b", "sellRate");
             JSONObject jsonBI = new JSONObject(replaceStringBI);
-            currency.add(new Currency("DOLAR", StringUtils.stringToDoubleNumber(jsonBI.getString("buyRate")), StringUtils.stringToDoubleNumber(jsonBI.getString("sellRate"))));
+            currency.add(new Currency("DOLAR","USD", StringUtils.stringToDoubleNumber(jsonBI.getString("buyRate")), StringUtils.stringToDoubleNumber(jsonBI.getString("sellRate"))));
 
             return currency;
         }catch (Exception e){
-            currency.add(new Currency("Dolar",0.0,0.0));
-            currency.add(new Currency("Euro",0.0,0.0));
+            currency.add(new Currency("DOLAR","USD",0.0,0.0));
 
             return currency;
         }

@@ -3,11 +3,13 @@ package com.financialapp.model;
 public class Currency {
 
     String typeOfCurrency;
+    String codeOfCurrency;
     Double buyRate;
     Double sellRate;
 
-    public Currency(String typeOfCurrency, Double buyRate, Double sellRate) {
+    public Currency(String typeOfCurrency,String codeOfCurrency, Double buyRate, Double sellRate) {
         this.typeOfCurrency = typeOfCurrency;
+        this.codeOfCurrency = codeOfCurrency;
         this.buyRate = buyRate;
         this.sellRate = sellRate;
     }
@@ -18,6 +20,14 @@ public class Currency {
 
     public void setTypeOfCurrency(String typeOfCurrency) {
         this.typeOfCurrency = typeOfCurrency;
+    }
+
+    public String getCodeOfCurrency() {
+        return codeOfCurrency;
+    }
+
+    public void setCodeOfCurrency(String codeOfCurrency) {
+        this.codeOfCurrency = codeOfCurrency;
     }
 
     public Double getBuyRate() {

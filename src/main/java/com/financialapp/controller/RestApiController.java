@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/api")
 public class RestApiController {
 
     @Autowired
-    CurrencyService currencyService; //Service which will do all data retrieval/manipulation work
+    CurrencyService currencyService;
 
     // -------------------Retrieve a Currency---------------------------------------------
     @RequestMapping(value = "/currency", method = RequestMethod.GET,produces = "application/json")

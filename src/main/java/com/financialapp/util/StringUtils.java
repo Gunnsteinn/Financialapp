@@ -1,7 +1,5 @@
 package com.financialapp.util;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.text.Normalizer;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,7 +35,7 @@ public class StringUtils{
         return mapOCurrencyfCodes.get(stringTypeNormalize(s));
     }
 
-    public static Double stringToDoubleNumber(@NotNull String s) {
+    public static Double stringToDoubleNumber(String s) {
         Double num = 0.0;
         Pattern regex = Pattern.compile("(\\d+(?:\\.\\d+)?)");
         Matcher matcher = regex.matcher(s.replace(',', '.'));

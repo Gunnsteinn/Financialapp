@@ -1,18 +1,17 @@
 package com.financialapp.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
 
     String bank;
+
     List<Currency> exchange;
 
     public Bank(String bank, List<Currency> exchange) {
         this.bank = bank;
         this.exchange = exchange;
     }
-
 
     public String getBank() {
         return bank;

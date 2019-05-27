@@ -19,22 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-@Api(value="Employee Management System", description="Operations pertaining to employee in Employee Management System")
+@RequestMapping("api")
+@Api(value = "Currency microservice", description = "This API has a CRUD for Currencies")
 public class RestApiController {
 
     @Autowired
     CurrencyService currencyService;
 
-    @ApiOperation(value = "View a list of available employees", response = List.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-
     // -------------------Retrieve a Currency---------------------------------------------
-
     @RequestMapping(value = "/currency", method = RequestMethod.GET,produces = "application/json")
+    @ApiOperation(value = "Find all bank Currency.", notes = "Return all bank Currency." )
     public ResponseEntity<List<Bank>> findAllCurrency() throws ResourceNotFoundException {
         List<Bank> allCurrencies = currencyService.findAllCurrency();
         if (allCurrencies.isEmpty()) {
@@ -45,6 +39,7 @@ public class RestApiController {
 
     // -------------------Retrieve all Currencies---------------------------------------------
     @RequestMapping(value = "/currency/{bank}", method = RequestMethod.GET,produces = "application/json")
+    @ApiOperation(value = "Find a bank Currency.", notes = "Return a bank Currency by Id." )
     public ResponseEntity<List<Currency>> findParticularCurrency(@PathVariable("bank") String bank) {
         List<Currency> currencies = currencyService.findParticularCurrency(bank);
         if (currencies.isEmpty()) {

@@ -10,11 +10,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/controller/RestApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
+            <state relative-caret-position="288">
               <caret line="47" column="72" selection-start-line="47" selection-start-column="72" selection-end-line="47" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -120,8 +120,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -213,6 +211,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -305,11 +305,12 @@
       <workItem from="1558907353623" duration="3185000" />
       <workItem from="1558914070455" duration="646000" />
       <workItem from="1558915545744" duration="5762000" />
+      <workItem from="1559080933979" duration="843000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118577000" />
+    <option name="totallyTimeSpent" value="119420000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -324,7 +325,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22919819" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23298033" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -673,13 +674,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="29" lean-forward="true" selection-start-column="29" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/config/SwaggerConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="514">
@@ -692,13 +687,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/service/CurrencyService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -729,7 +718,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/controller/RestApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
+        <state relative-caret-position="288">
           <caret line="47" column="72" selection-start-line="47" selection-start-column="72" selection-end-line="47" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />

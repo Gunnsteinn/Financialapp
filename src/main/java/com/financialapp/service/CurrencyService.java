@@ -10,4 +10,5 @@ public interface CurrencyService {
 
     List<Currency> findParticularCurrency(String bank);
 
+    String resetAllEntries();
 }

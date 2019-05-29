@@ -8,10 +8,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,7 @@ public class RestApiController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found."),
             @ApiResponse(code = 500, message = "Internal Server Error.")
     })
+    @CrossOrigin()
     public ResponseEntity<List<Bank>> findAllCurrency() throws ResourceNotFoundException {
         List<Bank> allCurrencies = currencyService.findAllCurrency();
         if (allCurrencies.isEmpty()) {
@@ -47,6 +45,7 @@ public class RestApiController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found."),
             @ApiResponse(code = 500, message = "Internal Server Error.")
     })
+    @CrossOrigin()
     public ResponseEntity<List<Currency>> findParticularCurrency(@PathVariable("bank") String bank) {
         List<Currency> currencies = currencyService.findParticularCurrency(bank);
         if (currencies.isEmpty()) {

@@ -43,6 +43,10 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
     @Qualifier("santanderRioCrawler")
     GenericCrawler santanderRioCrawler ;
 
+    @Autowired
+    @Qualifier("maeCrawler")
+    GenericCrawler maeCrawler ;
+
     public List<Currency> findCrawlerCurrency(String bank) {
         try {
             switch (bank) {
@@ -58,6 +62,8 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
                     return icbcCrawler.findCurrency();
                 case "BG":
                     return galiciaCrawler.findCurrency();
+                case "FM":
+                    return maeCrawler.findCurrency();
                 default:
                     currency.add(new Currency("DOLAR","USD",0.0,0.0));
                     currency.add(new Currency("EURO","EUR",0.0,0.0));
@@ -73,6 +79,7 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
     List<Callable<Bank>> callables = Arrays.asList(
             () -> new Bank("Banco de la Nación Argentina",nacionCrawler.findCurrency()),
             () -> new Bank("Santander Rio",santanderRioCrawler.findCurrency()),
+            () -> new Bank("FOREX MAE - Mercado de cambios",maeCrawler.findCurrency()),
             () -> new Bank("Banco BBVA Francés",francesCrawler.findCurrency()),
             () -> new Bank("Banco Galicia",galiciaCrawler.findCurrency()),
             () -> new Bank("Banco Patagonia",patagoniaCrawler.findCurrency()),

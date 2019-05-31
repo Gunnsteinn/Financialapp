@@ -27,7 +27,8 @@ public class GaliciaCrawlerImp implements GenericCrawler {
             BufferedReader rd1 = new BufferedReader(new InputStreamReader(dolar, Charset.forName("UTF-8")));
             StringBuilder sb1 = new StringBuilder();
             int cp1;
-                            while ((cp1 = rd1.read()) != -1) {
+
+            while ((cp1 = rd1.read()) != -1) {
                 sb1.append((char) cp1);
             }
 
@@ -35,7 +36,7 @@ public class GaliciaCrawlerImp implements GenericCrawler {
             String replaceString = jsonText.replaceAll("\\bbuy\\b", "buyRate");
             replaceString = replaceString.replaceAll("\\bsell\\b", "sellRate");
             JSONObject json = new JSONObject(replaceString);
-                            currency.add(new Currency("DOLAR","USD", StringUtils.stringToDoubleNumber(json.getString("buyRate")),StringUtils.stringToDoubleNumber(json.getString("sellRate"))));
+            currency.add(new Currency("DOLAR","USD", StringUtils.stringToDoubleNumber(json.getString("buyRate")),StringUtils.stringToDoubleNumber(json.getString("sellRate"))));
 
             InputStream euro = new URL("https://www.bancogalicia.com/cotizacion/cotizar?currencyId=98&quoteType=SU&quoteId=999").openStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(euro, Charset.forName("UTF-8")));

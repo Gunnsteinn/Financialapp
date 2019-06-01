@@ -14,9 +14,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Component
@@ -25,7 +25,9 @@ public class SchedulingTasksServices {
     @Autowired
     CurrencyService currencyService;
 
+
     private static final Logger log = LoggerFactory.getLogger(SchedulingTasksServices.class);
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Scheduled(fixedRate = 60000)
     public void reportCurrencyCrawler() {
@@ -37,8 +39,14 @@ public class SchedulingTasksServices {
     public void reportCurrency() {
         try {
             List<Currency> result = currencyService.findParticularCurrency("FM");
+            String Format = //"%0A$$$$$$$$$$$$$$$$$$$$$$$$" +
+                            "%0ADolar MAYORISTA: $" +  result.get(0).getSellRate() +
+                            "%0AHora: "+ dateFormat.format(new Date());
+                            //"%0A$$$$$$$$$$$$$$$$$$$$$$$$";
 
-            String UrlFormater = " https://api.telegram.org/bot825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg/sendMessage?chat_id=591887299&text=" + result;
+
+            String UrlFormater = "https://api.telegram.org/bot825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg/sendMessage?chat_id=591887299&text=" + Format;
+
             InputStream dolarBI = new URL(UrlFormater).openStream();
             BufferedReader rdBI = new BufferedReader(new InputStreamReader(dolarBI, Charset.forName("UTF-8")));
             StringBuilder sbBI = new StringBuilder();

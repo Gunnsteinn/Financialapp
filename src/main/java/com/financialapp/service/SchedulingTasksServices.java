@@ -63,6 +63,8 @@ public class SchedulingTasksServices {
                           "%0A\uD83D\uDCC8 $0.15" +
                           "%0A\uD83C\uDF10 <a href=\"http://financialfront.herokuapp.com/currencies\">FinancialApp</a>" +
                           "%0A";
+            //https://api.telegram.org/bot825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg/sendMessage?chat_id=591887299&text=[%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B](http://png.pngtree.com/png_detail/20181019/simple-abstract-border-png-clipart_2592949.png)%20Some%20text%20here&parse_mode=MARKDOWN
+            //curl -s -X POST "https://api.telegram.org/bot825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg/sendPhoto" -F chat_id=591887299 -F photo="http://www.mae.com.ar/temp/dcp_70943fc4-0-C3.png?guid=b311a5f3-c178-475c-84f8-a60c4779eb68" -F text="hola"
 
             String parseMode = "HTML";
             //URLEncoder.encode(q, "UTF-8");

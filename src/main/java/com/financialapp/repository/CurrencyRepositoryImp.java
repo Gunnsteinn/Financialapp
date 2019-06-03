@@ -47,6 +47,14 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
     @Qualifier("maeCrawler")
     GenericCrawler maeCrawler ;
 
+    @Autowired
+    @Qualifier("bancorCrawler")
+    GenericCrawler bancorCrawler ;
+
+    @Autowired
+    @Qualifier("supervielleCrawler")
+    GenericCrawler supervielleCrawler ;
+
     public List<Currency> findCrawlerCurrency(String bank) {
         try {
             switch (bank) {
@@ -62,6 +70,10 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
                     return icbcCrawler.findCurrency();
                 case "BG":
                     return galiciaCrawler.findCurrency();
+                case "BL":
+                    return supervielleCrawler.findCurrency();
+                case "BC":
+                    return bancorCrawler.findCurrency();
                 case "FM":
                     return maeCrawler.findCurrency();
                 default:
@@ -120,3 +132,4 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
         }
     }
 }
+

@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -35,30 +36,53 @@ public class SchedulingTasksServices {
         currencyService.findAllCurrency();
     }
 
-    @Scheduled(fixedRate = 600)
+
+    //* "0 0 * * * *" = the top of every hour of every day.
+    //* "*/10 * * * * *" = every ten seconds.
+    //* "0 0 8-10 * * *" = 8, 9 and 10 o'clock of every day.
+    //* "0 0 8,10 * * *" = 8 and 10 o'clock of every day.
+    //* "0 0/30 8-10 * * *" = 8:00, 8:30, 9:00, 9:30 and 10 o'clock every day.
+    //* "0 0/30 9-17 * * MON-SAT" = on the hour nine-to-five weekdays
+    //* "0 0 0 25 12 ?" = every Christmas Day at midnight
+    //@Scheduled(cron = "*/60 * 9-17 * * MON-FRI")
+    @Scheduled(fixedRate = 60000)
     public void reportCurrency() {
         try {
+
+
             List<Currency> result = currencyService.findParticularCurrency("FM");
-            String Format = //"%0A$$$$$$$$$$$$$$$$$$$$$$$$" +
-                            "%0ADolar MAYORISTA: $" +  result.get(0).getSellRate() +
-                            "%0AHora: "+ dateFormat.format(new Date());
-                            //"%0A$$$$$$$$$$$$$$$$$$$$$$$$";
+            String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s&parse_mode=%s";
+
+            String apiToken4Gruop = "814592888:AAED7aTvtOGpuE1WiWXtfL8KjQrxv2ggfwo";
+            String apiToken = "825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg";
+            String chatId4Gruop = "-271523446";
+            String chatId = "591887299";
+            String text = "%0A" +
+                          "%0A \uD83D\uDCB0Mayorista: <strong>$" +  result.get(0).getSellRate() + "</strong>" +
+                          "%0A\uD83D\uDCC9 $(0.25)" +
+                          "%0A\uD83D\uDCC8 $0.15" +
+                          "%0A\uD83C\uDF10 <a href=\"http://financialfront.herokuapp.com/currencies\">FinancialApp</a>" +
+                          "%0A";
+
+            String parseMode = "HTML";
+            //URLEncoder.encode(q, "UTF-8");
+            urlString = String.format(urlString, apiToken, chatId, text, parseMode);
 
 
-            String UrlFormater = "https://api.telegram.org/bot825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg/sendMessage?chat_id=591887299&text=" + Format;
+            URL url = new URL(urlString);
+            URLConnection conn = url.openConnection();
 
-            InputStream dolarBI = new URL(UrlFormater).openStream();
-            BufferedReader rdBI = new BufferedReader(new InputStreamReader(dolarBI, Charset.forName("UTF-8")));
-            StringBuilder sbBI = new StringBuilder();
-            int cpBI;
-            while ((cpBI = rdBI.read()) != -1) {
-                sbBI.append((char) cpBI);
+            StringBuilder sb = new StringBuilder();
+            InputStream is = new BufferedInputStream(conn.getInputStream());
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String inputLine = "";
+            while ((inputLine = br.readLine()) != null) {
+                sb.append(inputLine);
             }
-
-            String jsonTextBI = sbBI.toString();
-            JSONObject jsonBI = new JSONObject(jsonTextBI);
+            String response = sb.toString();
+            JSONObject jsonBI = new JSONObject(response);
             if(!jsonBI.getBoolean("ok")){
-                reportCurrency();
+                log.info(jsonBI.toString());
             }
         }catch (Exception e){}
     }

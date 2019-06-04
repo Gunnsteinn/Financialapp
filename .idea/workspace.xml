@@ -12,39 +12,44 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/service/SchedulingTasksServices.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/service/CurrencyServiceImp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="804">
-              <caret line="79" column="23" lean-forward="true" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2294#2295#0" expanded="true" />
-                <element signature="e#2363#2364#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/MaeCrawlerImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="271">
+              <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#530#531#0" expanded="true" />
+                <element signature="e#580#581#0" expanded="true" />
                 <element signature="e#743#757#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/SantanderRioCrawlerImp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+              <folding>
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#570#571#0" expanded="true" />
+                <element signature="method#CrawlerSantanderRioCurrency#0;class#SantanderRioCrawlerImp#0" />
+                <element signature="e#705#1976#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/CurrencyRepositoryImp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#findCrawlerCurrency#0;class#CurrencyRepositoryImp#0" />
+                <element signature="method#findAllCrawlerCurrency#0;class#CurrencyRepositoryImp#0" />
               </folding>
             </state>
           </provider>
@@ -326,7 +331,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164111000" />
+    <option name="totallyTimeSpent" value="165617000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -338,10 +343,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.19213313" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.23373677" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.1762481" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -349,7 +354,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.20458265" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.17839608" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44026187" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -423,7 +428,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/financialapp/service/SchedulingTasksServices.java</url>
-          <line>102</line>
+          <line>103</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
@@ -595,16 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/GaliciaCrawlerImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/BancorCrawlerImp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -650,13 +645,6 @@
             <element signature="e#656#666#0" expanded="true" />
             <element signature="e#1957#2123#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/SantanderRioCrawlerImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="83" />
         </state>
       </provider>
     </entry>
@@ -725,49 +713,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/GenericCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/MaeCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/CurrencyRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/model/MaeTotalData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/CurrencyRepositoryImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#findCrawlerCurrency#0;class#CurrencyRepositoryImp#0" />
-            <element signature="method#findAllCrawlerCurrency#0;class#CurrencyRepositoryImp#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -791,35 +740,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/MaeCrawlerImp.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/GaliciaCrawlerImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="396">
+          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#743#757#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/GenericCrawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/MaeCrawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/CurrencyRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/service/CurrencyServiceImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="804">
-          <caret line="79" column="23" lean-forward="true" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
+        <state relative-caret-position="441">
+          <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2294#2295#0" expanded="true" />
-            <element signature="e#2363#2364#0" expanded="true" />
+            <element signature="method#findParticularCurrency#0;class#CurrencyServiceImp#0" />
+            <element signature="method#findAllCurrency#0;class#CurrencyServiceImp#0" />
+            <element signature="method#findAllCurrency#1;class#CurrencyServiceImp#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/service/SchedulingTasksServices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="424">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#reportCurrencyCrawler#0;class#SchedulingTasksServices#0" />
+            <element signature="method#reportCurrency#0;class#SchedulingTasksServices#0" />
+            <element signature="method#reportCurrency#1;class#SchedulingTasksServices#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/CurrencyRepositoryImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#findCrawlerCurrency#0;class#CurrencyRepositoryImp#0" />
+            <element signature="method#findAllCrawlerCurrency#0;class#CurrencyRepositoryImp#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/SantanderRioCrawlerImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+          <folding>
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="method#CrawlerSantanderRioCurrency#0;class#SantanderRioCrawlerImp#0" />
+            <element signature="e#705#1976#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/financialapp/repository/MaeCrawlerImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#530#531#0" expanded="true" />
+            <element signature="e#580#581#0" expanded="true" />
+            <element signature="e#743#757#0" expanded="true" />
           </folding>
         </state>
       </provider>

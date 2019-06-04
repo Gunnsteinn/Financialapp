@@ -2,6 +2,8 @@ package com.financialapp.service;
 
 import com.financialapp.model.Bank;
 import com.financialapp.model.Currency;
+import com.financialapp.model.Mae;
+import com.financialapp.model.MaeTotalData;
 import com.financialapp.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -61,5 +63,21 @@ public class CurrencyServiceImp implements CurrencyService{
     @CacheEvict(cacheNames="bank", allEntries=true)
     public String resetAllEntries() {
         return "Reset Cache " + dateFormat.format(new Date());
+    }
+
+    @Cacheable("maePrice")
+    public Double findLastMaePrice() {
+        try {
+            List<MaeTotalData> result = currencyRepository.findMaeCrawler();
+            Double sellRate = 0.0;
+            for (Mae tds : result.get(0).getExchange()) {
+                if (tds.getWheel().contains("CAM1") && tds.getAppliance().contains("UST / ART 000")) {
+                    sellRate = tds.getSellRate();
+                }
+            }
+            return sellRate;
+        }catch (Exception e){
+            return 0.0;
+        }
     }
 }

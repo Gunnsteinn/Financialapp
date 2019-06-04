@@ -38,7 +38,7 @@ public class SupervielleCrawlerImp implements GenericCrawler{
                         jsonObject.put("buy", buy);
                         jsonObject.put("sell", sell);
                         currency.add(new Currency(StringUtils.stringTypeNormalize(type), StringUtils.stringCodeNormalize(code), StringUtils.stringToDoubleNumber(buy), StringUtils.stringToDoubleNumber(sell)));
-                        jsonParentObject.put(type,jsonObject);
+                        jsonParentObject.put(StringUtils.stringTypeNormalize(type),jsonObject);
                     }
                 }
             }

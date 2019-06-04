@@ -2,6 +2,8 @@ package com.financialapp.repository;
 
 import com.financialapp.model.Bank;
 import com.financialapp.model.Currency;
+import com.financialapp.model.Mae;
+import com.financialapp.model.MaeTotalData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,8 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
 
     private List<Currency> currency;
     private List<Bank> allCurrencies;
+    private List<Mae> mae;
+    private List<MaeTotalData> maeTotalData;
 
     @Autowired
     @Qualifier("francesCrawler")
@@ -44,16 +48,26 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
     GenericCrawler santanderRioCrawler ;
 
     @Autowired
-    @Qualifier("maeCrawler")
-    GenericCrawler maeCrawler ;
-
-    @Autowired
     @Qualifier("bancorCrawler")
     GenericCrawler bancorCrawler ;
 
     @Autowired
     @Qualifier("supervielleCrawler")
     GenericCrawler supervielleCrawler ;
+
+    @Autowired
+    @Qualifier("maeCrawler")
+    MaeCrawler maeCrawler;
+
+    public List<MaeTotalData> findMaeCrawler() {
+        try {
+            return maeCrawler.findMae();
+        } catch (Exception e) {
+            mae.add(new Mae("CAM1", "UST / ART 000", "0", 0.0,""));
+            maeTotalData.add(new MaeTotalData("",mae));
+            return maeTotalData;
+        }
+    }
 
     public List<Currency> findCrawlerCurrency(String bank) {
         try {
@@ -74,8 +88,6 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
                     return supervielleCrawler.findCurrency();
                 case "BC":
                     return bancorCrawler.findCurrency();
-                case "FM":
-                    return maeCrawler.findCurrency();
                 default:
                     currency.add(new Currency("DOLAR","USD",0.0,0.0));
                     currency.add(new Currency("EURO","EUR",0.0,0.0));
@@ -91,7 +103,6 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
     List<Callable<Bank>> callables = Arrays.asList(
             () -> new Bank("Banco de la Nación Argentina",nacionCrawler.findCurrency()),
             () -> new Bank("Santander Rio",santanderRioCrawler.findCurrency()),
-            () -> new Bank("FOREX MAE - Mercado de cambios",maeCrawler.findCurrency()),
             () -> new Bank("Banco BBVA Francés",francesCrawler.findCurrency()),
             () -> new Bank("Banco Galicia",galiciaCrawler.findCurrency()),
             () -> new Bank("Banco Patagonia",patagoniaCrawler.findCurrency()),

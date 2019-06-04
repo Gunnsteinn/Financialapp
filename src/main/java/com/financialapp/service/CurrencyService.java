@@ -2,6 +2,7 @@ package com.financialapp.service;
 
 import com.financialapp.model.Bank;
 import com.financialapp.model.Currency;
+
 import java.util.List;
 
 public interface CurrencyService {
@@ -11,4 +12,7 @@ public interface CurrencyService {
     List<Currency> findParticularCurrency(String bank);
 
     String resetAllEntries();
+
+    Double findLastMaePrice();
+
 }

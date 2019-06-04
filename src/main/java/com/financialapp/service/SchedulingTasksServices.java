@@ -1,6 +1,9 @@
 package com.financialapp.service;
 
 import com.financialapp.model.Currency;
+import com.financialapp.model.Mae;
+import com.financialapp.model.MaeTotalData;
+import com.financialapp.repository.CurrencyRepository;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,7 @@ import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 
 
 @Component
@@ -26,6 +30,8 @@ public class SchedulingTasksServices {
     @Autowired
     CurrencyService currencyService;
 
+    @Autowired
+    CurrencyRepository currencyRepository;
 
     private static final Logger log = LoggerFactory.getLogger(SchedulingTasksServices.class);
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -45,31 +51,32 @@ public class SchedulingTasksServices {
     //* "0 0/30 9-17 * * MON-SAT" = on the hour nine-to-five weekdays
     //* "0 0 0 25 12 ?" = every Christmas Day at midnight
     //@Scheduled(cron = "*/60 * 9-17 * * MON-FRI")
-    @Scheduled(fixedRate = 60000)
+    //@Scheduled(fixedRate = 60000)
+    @Scheduled(cron = "*/60 * 9-13 * * MON-FRI")
     public void reportCurrency() {
         try {
-
-
-            List<Currency> result = currencyService.findParticularCurrency("FM");
+            List<MaeTotalData> result = currencyRepository.findMaeCrawler();
+            String sellRate = "0";
+            for (Mae tds : result.get(0).getExchange()) {
+                if (tds.getWheel().contains("CAM1") && tds.getAppliance().contains("UST / ART 000")) {
+                   sellRate = tds.getSellRate().toString();
+                }
+            }
             String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s&parse_mode=%s";
-
             String apiToken4Gruop = "814592888:AAED7aTvtOGpuE1WiWXtfL8KjQrxv2ggfwo";
             String apiToken = "825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg";
             String chatId4Gruop = "-271523446";
             String chatId = "591887299";
-            String text = "%0A" +
-                          "%0A \uD83D\uDCB0Mayorista: <strong>$" +  result.get(0).getSellRate() + "</strong>" +
-                          "%0A\uD83D\uDCC9 $(0.25)" +
-                          "%0A\uD83D\uDCC8 $0.15" +
-                          "%0A\uD83C\uDF10 <a href=\"http://financialfront.herokuapp.com/currencies\">FinancialApp</a>" +
-                          "%0A";
-            //https://api.telegram.org/bot825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg/sendMessage?chat_id=591887299&text=[%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B](http://png.pngtree.com/png_detail/20181019/simple-abstract-border-png-clipart_2592949.png)%20Some%20text%20here&parse_mode=MARKDOWN
-            //curl -s -X POST "https://api.telegram.org/bot825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg/sendPhoto" -F chat_id=591887299 -F photo="http://www.mae.com.ar/temp/dcp_70943fc4-0-C3.png?guid=b311a5f3-c178-475c-84f8-a60c4779eb68" -F text="hola"
+            String text =   "%0A" +
+                            "%0A\uD83D\uDCB0Mayorista: *$" + sellRate + "*" + //result.get(0).getSellRate() + "*" +
+                            "%0A\uD83D\uDCC9 $(0.25)" +
+                            "%0A\uD83D\uDCC8 $0.15" +
+                            "%0A" +
+                            "%0A\uD83C\uDF10 [FinancialApp](http://financialfront.herokuapp.com/currencies/)" +
+                            "%0A [%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B](" + result.get(0).getEvolucionForexChartPaint() + ")";
+            String parseMode = "MARKDOWN";
 
-            String parseMode = "HTML";
-            //URLEncoder.encode(q, "UTF-8");
             urlString = String.format(urlString, apiToken, chatId, text, parseMode);
-
 
             URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
@@ -86,6 +93,17 @@ public class SchedulingTasksServices {
             if(!jsonBI.getBoolean("ok")){
                 log.info(jsonBI.toString());
             }
-        }catch (Exception e){}
+        }catch (Exception e){
+            log.info(e.toString());
+        }
+    }
+
+    @Scheduled(cron = "* * 18 * * MON-FRI")
+    public Double caprtureLastMaePrice() {
+        try {
+            return currencyService.findLastMaePrice();
+        }catch (Exception e){
+            return 0.0;
+        }
     }
 }

@@ -38,7 +38,7 @@ public class FrancesCrawlerImp implements GenericCrawler {
                         jsonObject.put("buy", buy);
                         jsonObject.put("sell", sell);
                         currency.add(new Currency( StringUtils.stringTypeNormalize(type), StringUtils.stringCodeNormalize(code), StringUtils.stringToDoubleNumber(buy), StringUtils.stringToDoubleNumber(sell)));
-                        jsonParentObject3.put(type,jsonObject);
+                        jsonParentObject3.put(StringUtils.stringTypeNormalize(type),jsonObject);
                     }
                 }
             }

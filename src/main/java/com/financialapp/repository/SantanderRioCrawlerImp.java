@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository("santanderRioCrawler")
-public class SantanderRioSantanderRioCrawlerImp implements GenericCrawler{
+public class SantanderRioCrawlerImp implements GenericCrawler{
 
     public List<Currency> findCurrency(){
         return this.CrawlerSantanderRioCurrency();
@@ -38,7 +38,7 @@ public class SantanderRioSantanderRioCrawlerImp implements GenericCrawler{
                         jsonObject.put("buy", buy);
                         jsonObject.put("sell", sell);
                         currency.add(new Currency(StringUtils.stringTypeNormalize(type), StringUtils.stringCodeNormalize(code), StringUtils.stringToDoubleNumber(buy), StringUtils.stringToDoubleNumber(sell)));
-                        jsonParentObject.put(type,jsonObject);
+                        jsonParentObject.put(StringUtils.stringTypeNormalize(type),jsonObject);
                     }
                 }
             }

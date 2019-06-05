@@ -62,7 +62,7 @@ public class CurrencyServiceImp implements CurrencyService{
 
     @CacheEvict(cacheNames="bank", allEntries=true)
     public String resetAllEntries() {
-        return "Reset Cache " + dateFormat.format(new Date());
+        return "Reset Cache all Currencies " + dateFormat.format(new Date());
     }
 
     @Cacheable("maePrice")
@@ -79,5 +79,10 @@ public class CurrencyServiceImp implements CurrencyService{
         }catch (Exception e){
             return 0.0;
         }
+    }
+
+    @CacheEvict(cacheNames="maePrice", allEntries=true)
+    public String resetLastMaePrice() {
+        return "Reset LastMaePrice Cache " + dateFormat.format(new Date());
     }
 }

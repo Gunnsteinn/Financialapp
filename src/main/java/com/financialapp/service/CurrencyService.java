@@ -15,4 +15,6 @@ public interface CurrencyService {
 
     Double findLastMaePrice();
 
+    String resetLastMaePrice();
+
 }

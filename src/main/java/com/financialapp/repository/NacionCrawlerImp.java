@@ -39,7 +39,6 @@ public class NacionCrawlerImp implements GenericCrawler {
                         jsonObject.put("sell", sell);
                         Double buyFix = 0.0;
                         Double sellFix = 0.0;
-                        System.out.println(StringUtils.stringTypeNormalize(type));
                         if (StringUtils.stringTypeNormalize(type).equalsIgnoreCase("REAL")){
                             buyFix = StringUtils.stringToDoubleNumber(buy)/100;
                             sellFix = StringUtils.stringToDoubleNumber(sell)/100;

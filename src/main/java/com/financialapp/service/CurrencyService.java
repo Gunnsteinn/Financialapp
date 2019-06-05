@@ -2,6 +2,7 @@ package com.financialapp.service;
 
 import com.financialapp.model.Bank;
 import com.financialapp.model.Currency;
+import com.financialapp.model.MaeTotalData;
 
 import java.util.List;
 

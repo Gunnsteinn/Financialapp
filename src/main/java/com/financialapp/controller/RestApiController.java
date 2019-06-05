@@ -3,6 +3,7 @@ package com.financialapp.controller;
 import com.financialapp.exception.ResourceNotFoundException;
 import com.financialapp.model.Bank;
 import com.financialapp.model.Currency;
+import com.financialapp.model.MaeTotalData;
 import com.financialapp.service.CurrencyService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,19 @@ public class RestApiController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<List<Currency>>(currencies, HttpStatus.OK);
+    }
+
+    // -------------------Retrieve all Currencies---------------------------------------------
+    @RequestMapping(value = "/lastMaePrice", method = RequestMethod.GET,produces = "application/json")
+    @ApiOperation(value = "Find a bank Currency.", notes = "Return the last Mae Price." )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved last Mae Price"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found."),
+            @ApiResponse(code = 500, message = "Internal Server Error.")
+    })
+    @CrossOrigin()
+    public ResponseEntity<Double> findMaeTotalData() {
+        Double lastMaePrice = currencyService.findLastMaePrice();
+        return new ResponseEntity<Double>(lastMaePrice, HttpStatus.OK);
     }
 }

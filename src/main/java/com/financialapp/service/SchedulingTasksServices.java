@@ -47,9 +47,10 @@ public class SchedulingTasksServices {
     //* "0 0/30 8-10 * * *" = 8:00, 8:30, 9:00, 9:30 and 10 o'clock every day.
     //* "0 0 9-17 * * MON-SAT" = on the hour nine-to-five weekdays
     //* "0 0 0 25 12 ?" = every Christmas Day at midnight
+    //https://cronexpressiondescriptor.azurewebsites.net/?expression=0+0%2F30+10-17+*+*+MON-FRI&locale=en
     //@Scheduled(cron = "*/60 * 10,17 * * MON-FRI")
     //@Scheduled(fixedRate = 60000)
-    @Scheduled(cron = "0 0/30 10,17 * * MON-FRI")
+    @Scheduled(cron = "0 0/30 10-17 * * MON-FRI")
     public void reportCurrency() {
         try {
             List<MaeTotalData> result = currencyRepository.findMaeCrawler();
@@ -104,7 +105,7 @@ public class SchedulingTasksServices {
         }
     }
 
-    @Scheduled(cron = "0 30 23 ? * MON-FRI")
+    @Scheduled(cron = "0 30 20 ? * MON-FRI")
     public void caprtureLastMaePrice() {
         log.info(currencyService.resetLastMaePrice());
     }

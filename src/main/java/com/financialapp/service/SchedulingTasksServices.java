@@ -50,7 +50,7 @@ public class SchedulingTasksServices {
     //https://cronexpressiondescriptor.azurewebsites.net/?expression=0+0%2F30+10-17+*+*+MON-FRI&locale=en
     //@Scheduled(cron = "*/60 * 10,17 * * MON-FRI")
     //@Scheduled(fixedRate = 60000)
-    @Scheduled(cron = "0 0/30 10-17 * * MON-FRI")
+    @Scheduled(cron = "* */30 10-17 * * MON-FRI")
     public void reportCurrency() {
         try {
             List<MaeTotalData> result = currencyRepository.findMaeCrawler();

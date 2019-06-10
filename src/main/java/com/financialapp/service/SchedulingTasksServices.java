@@ -105,7 +105,7 @@ public class SchedulingTasksServices {
         }
     }
 
-    @Scheduled(cron = "0 30 20 ? * MON-FRI")
+    @Scheduled(cron = "0 0 20 ? * MON-FRI")
     public void caprtureLastMaePrice() {
         log.info(currencyService.resetLastMaePrice());
         currencyRepository.findMaeCrawler();

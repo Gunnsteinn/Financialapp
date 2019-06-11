@@ -39,7 +39,6 @@ public class SchedulingTasksServices {
         currencyService.findAllCurrency();
     }
 
-
     //* "0 0 * * * *" = the top of every hour of every day.
     //* "*/10 * * * * *" = every ten seconds.
     //* "0 0 8-10 * * *" = 8, 9 and 10 o'clock of every day.

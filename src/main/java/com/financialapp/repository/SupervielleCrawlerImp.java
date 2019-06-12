@@ -16,17 +16,17 @@ import java.util.List;
 public class SupervielleCrawlerImp implements GenericCrawler{
 
     public List<Currency> findCurrency(){
-        return this.CrawlerSantanderRioCurrency();
+        return this.CrawlerSupervielleCurrency();
     }
 
-    private List<Currency> CrawlerSantanderRioCurrency() {
+    private List<Currency> CrawlerSupervielleCurrency() {
         List<Currency> currency = new ArrayList<Currency>();
         try {
             String webPage = "https://personas.supervielle.com.ar/Pages/QuotesPanel/Quotes.aspx#";
             String document = Jsoup.connect(webPage).get().html();
             Document doc = Jsoup.parse(document);
             JSONObject jsonParentObject = new JSONObject();
-            for (Element table : doc.select("tbody")) {
+            for (Element table : doc.select("table#gvCotizaciones")) {
                 for (Element row : table.select("tr")) {
                     JSONObject jsonObject = new JSONObject();
                     Elements tds = row.select("td");

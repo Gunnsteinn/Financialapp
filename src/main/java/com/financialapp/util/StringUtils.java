@@ -10,7 +10,14 @@ import java.util.regex.Pattern;
 
 public class StringUtils{
 
-    private static List<String> typeOfCurrencyList = Arrays.asList("DOLAR", "EURO", "REAL", "URUGUAYOS");
+    private static List<String> typeOfCurrencyList = Arrays.asList("DOLAR","EEUU", "EURO", "REAL", "URUGUAYOS");
+    private static Map<String, String> maptypeOfCurrencyList =  new HashMap<String, String>() {{
+        put("DOLAR", "DOLAR");
+        put("EEUU", "DOLAR");
+        put("EURO", "EURO");
+        put("REAL", "REAL");
+        put("URUGUAYOS", "URUGUAYOS");
+    }};
     private static Map<String, String> mapOCurrencyfCodes  = new HashMap<String, String>() {{
         put("DOLAR", "USD");
         put("EURO", "EUR");
@@ -28,7 +35,7 @@ public class StringUtils{
             break;
            }
         }
-        return s;
+        return maptypeOfCurrencyList.get(s);
     }
 
     public static String stringCodeNormalize(String s) {

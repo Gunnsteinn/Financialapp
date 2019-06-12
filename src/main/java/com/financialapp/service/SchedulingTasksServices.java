@@ -82,7 +82,7 @@ public class SchedulingTasksServices {
                     "%0A [%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B](" + result.get(0).getEvolucionForexChartPaint() + ")";
             String parseMode = "MARKDOWN";
 
-            urlString = String.format(urlString, apiToken, chatId, text, parseMode);
+            urlString = String.format(urlString, apiToken4Gruop, chatId4Gruop, text, parseMode);
 
             URL url = new URL(urlString);
             URLConnection conn = url.openConnection();

@@ -108,7 +108,7 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
 
     List<Callable<Bank>> callables = Arrays.asList(
             () -> new Bank("Banco de la Nación Argentina",nacionCrawler.findCurrency()),
-            () -> new Bank("Santander Rio",santanderRioCrawler.findCurrency()),
+            () -> new Bank("Banco Santander Rio",santanderRioCrawler.findCurrency()),
             () -> new Bank("Banco BBVA Francés",francesCrawler.findCurrency()),
             () -> new Bank("Banco Galicia",galiciaCrawler.findCurrency()),
             () -> new Bank("Banco Patagonia",patagoniaCrawler.findCurrency()),

@@ -48,7 +48,7 @@ public class CurrencyServiceImp implements CurrencyService{
             currency.add(new Currency("DOLAR","USD",0.0,0.0));
             currency.add(new Currency("EURO","EUR",0.0,0.0));
 
-            List<Bank> allCurrencies = new ArrayList<Bank>();
+            List<Bank> allCurrencies = new ArrayList<>();
             allCurrencies.add(new Bank("Santander Rio",currency));
             allCurrencies.add(new Bank("Banco de la Nación Argentina",currency));
             allCurrencies.add(new Bank("Banco Patagonia",currency));
@@ -84,5 +84,15 @@ public class CurrencyServiceImp implements CurrencyService{
     @CacheEvict(cacheNames="maePrice", allEntries=true)
     public String resetLastMaePrice() {
         return "Reset LastMaePrice Cache " + dateFormat.format(new Date());
+    }
+
+    @Cacheable("openBank")
+    public List<Bank> findOpenCurrencies() {
+        return findAllCurrency();
+    }
+
+    @CacheEvict(cacheNames="openBank", allEntries=true)
+    public String resetOpenCurrencies() {
+        return "Reset Open Currencies " + dateFormat.format(new Date());
     }
 }

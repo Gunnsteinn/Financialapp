@@ -23,7 +23,7 @@ public class BancorCrawlerImp implements GenericCrawler{
         try {
             String webPage = "https://www.bancor.com.ar/718_APP//umbraco/api/Currency/GetCurrencyExchange";
             String document = Jsoup.connect(webPage).timeout(100000).validateTLSCertificates(false).get().html();
-
+                          //Jsoup.connect("https://jsoup.org/news/").validateTLSCertificates(false).timeout(15000).execute();
             String replaceStringBI = document.replaceAll("\\Value\\b", "buyRate");
             replaceStringBI = replaceStringBI.replaceAll("\\bvalorVenta\\b", "sellRate");
             JSONObject jsonBI = new JSONObject(replaceStringBI);

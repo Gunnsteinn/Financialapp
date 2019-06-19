@@ -105,13 +105,13 @@ public class SchedulingTasksServices {
     }
 
     @Scheduled(cron = "0 15 13 ? * MON-FRI")
-    public void caprtureLastMaePrice() {
+    public void captureLastMaePrice() {
         log.info(currencyService.resetLastMaePrice());
         currencyRepository.findMaeCrawler();
     }
 
     @Scheduled(cron = "0 0 11 ? * MON-FRI")
-    public void caprtureOpenCurrencies() {
+    public void captureOpenCurrencies() {
         log.info(currencyService.resetOpenCurrencies());
         currencyService.findOpenCurrencies();
     }

@@ -114,7 +114,8 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
             () -> new Bank("Banco Patagonia",patagoniaCrawler.findCurrency()),
             () -> new Bank("Banco ICBC",icbcCrawler.findCurrency()),
             () -> new Bank("Banco SuperVielle",supervielleCrawler.findCurrency()),
-            () -> new Bank("Banco Provincia",provinciaBACrawler.findCurrency())
+            () -> new Bank("Banco Provincia de Buenos Aires",provinciaBACrawler.findCurrency()),
+            () -> new Bank("Banco Provincia de Córdoba",bancorCrawler.findCurrency())
     );
 
     public List<Bank> findAllCrawlerCurrency() {

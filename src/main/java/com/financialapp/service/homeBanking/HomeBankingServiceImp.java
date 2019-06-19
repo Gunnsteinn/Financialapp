@@ -18,7 +18,8 @@ public class HomeBankingServiceImp implements HomeBankingService {
         listHomeBanking.add(new HomeBanking("Banco Patagonia","https://ebankpersonas.bancopatagonia.com.ar/eBanking/usuarios/login.htm"));
         listHomeBanking.add(new HomeBanking("Banco ICBC","https://www.accessbanking.com.ar/RetailHomeBankingWeb/init.do?a=b&cm_mmc=icbc-_-access-_-header-_-onlinebanking"));
         listHomeBanking.add(new HomeBanking("Banco SuperVielle","https://personas.supervielle.com.ar/Login.aspx"));
-        listHomeBanking.add(new HomeBanking("Banco Provincia","https://www.bancoprovincia.bancainternet.com.ar/eBanking/login/inicio.htm"));
+        listHomeBanking.add(new HomeBanking("Banco Provincia de Buenos Aires","https://www.bancoprovincia.bancainternet.com.ar/eBanking/login/inicio.htm"));
+        listHomeBanking.add(new HomeBanking("Banco Provincia de Córdoba","https://www.bancor.com.ar/bancon/"));
         return listHomeBanking;
     }
 }

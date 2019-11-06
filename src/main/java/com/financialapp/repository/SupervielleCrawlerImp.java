@@ -10,6 +10,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository("supervielleCrawler")
@@ -42,13 +43,16 @@ public class SupervielleCrawlerImp implements GenericCrawler{
                     }
                 }
             }
-
-            return currency;
         }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
+        	currency = new ArrayList<Currency>();
+        	currency.add(new Currency("DOLAR","USD",0.0,0.0));
             currency.add(new Currency("EURO","EUR",0.0,0.0));
-
-            return currency;
         }
+        
+        Collections.sort(currency, (x,y) -> {
+        	return x.getType().compareTo(y.getType());
+        });
+        
+        return currency;
     }
 }

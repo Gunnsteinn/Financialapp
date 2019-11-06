@@ -28,11 +28,13 @@ import java.util.List;
 public class BancorCrawlerImp implements GenericCrawler{
 
     final static String requestUrl = "https://www.bancor.com.ar/718_APP//umbraco/api/Currency/GetCurrencyExchange";
+    private JSONObject jsonEURC, jsonUSDC, jsonEURV, jsonUSDV;
+    
     public List<Currency> findCurrency(){
-        return this.CrawlerSantanderRioCurrency();
+        return this.CrawlerBancorCurrency();
     }
 
-    private List<Currency> CrawlerSantanderRioCurrency() {
+    private List<Currency> CrawlerBancorCurrency() {
         List<Currency> currency = new ArrayList<Currency>();
         try
         {
@@ -44,20 +46,40 @@ public class BancorCrawlerImp implements GenericCrawler{
 
             Document doc = Jsoup.parse(response.parse().html());
             Elements table = doc.select("body");
-            System.out.println(table.get(0).text());
+            //System.out.println(table.get(0).text());
+            
             JSONArray jsonArray = new JSONArray(table.get(0).text());
-
-            Object jsonEURC = jsonArray.getJSONObject(0);
-            Object jsonUSDC = jsonArray.getJSONObject(1);
-            Object jsonEURV = jsonArray.getJSONObject(2);
-            Object jsonUSDV = jsonArray.getJSONObject(3);
-
-            currency.add(new Currency("DOLAR","USD", StringUtils.stringToDoubleNumber(((JSONObject) jsonUSDC).getString("Value")), StringUtils.stringToDoubleNumber(((JSONObject) jsonUSDV).getString("Value"))));
-            currency.add(new Currency("EURO","EUR",StringUtils.stringToDoubleNumber(((JSONObject) jsonEURC).getString("Value")),StringUtils.stringToDoubleNumber(((JSONObject) jsonEURV).getString("Value"))));
+            jsonArray.forEach(item -> {
+                JSONObject obj = (JSONObject) item;
+                switch((obj.getString("CurrencyCode") + obj.getString("OperationCode")).toUpperCase()) {
+                	case "USDMCC": 
+                		jsonUSDC = obj;
+                		break;
+                	case "USDMCV": 
+                		jsonUSDV = obj;
+                		break;
+                	case "EURMCC": 
+                		jsonEURC = obj;
+                		break;
+                	case "EURMCV": 
+                		jsonEURV = obj;
+                		break;
+                }
+            });
+           
+            if (jsonUSDC != null && jsonUSDV != null) {
+            	currency.add(new Currency("DOLAR","USD", StringUtils.stringToDoubleNumber(((JSONObject) jsonUSDC).getString("Value")), StringUtils.stringToDoubleNumber(((JSONObject) jsonUSDV).getString("Value"))));
+            }
+            
+            if (jsonEURC != null && jsonEURV != null) {
+            	currency.add(new Currency("EURO","EUR",StringUtils.stringToDoubleNumber(((JSONObject) jsonEURC).getString("Value")),StringUtils.stringToDoubleNumber(((JSONObject) jsonEURV).getString("Value"))));
+            }
+            
             return currency;
         }
         catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
+        	currency = new ArrayList<Currency>();
+        	currency.add(new Currency("DOLAR","USD",0.0,0.0));
             currency.add(new Currency("EURO","EUR",0.0,0.0));
 
             return currency;

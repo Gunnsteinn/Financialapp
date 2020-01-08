@@ -24,7 +24,7 @@ public class MaeCrawlerImp implements MaeCrawler {
         List<Mae> maeInfo = new ArrayList<Mae>();
         List<MaeTotalData> maeTotalData= new ArrayList<MaeTotalData>();
         try {
-            String webPage = "http://www.mae.com.ar/mercados/forex/default.aspx";
+             String webPage = "https://servicios.mae.com.ar/mercados/Forex/Default.aspx";
             //String document3 = Jsoup.connect(webPage).get().html();
             //Document doc3 = Jsoup.parse(document3);
             String document = Jsoup.connect(webPage).get().html();

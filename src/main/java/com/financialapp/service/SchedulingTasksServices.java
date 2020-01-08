@@ -60,44 +60,46 @@ public class SchedulingTasksServices {
                 }
             }
 
-            String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s&parse_mode=%s";
-            String apiToken4Gruop = "814592888:AAED7aTvtOGpuE1WiWXtfL8KjQrxv2ggfwo";
-            String apiToken = "825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg";
-            String chatId4Gruop = "-271523446";
-            String chatId = "591887299";
-            String text =   "%0A" +
-                    "%0A\uD83D\uDCB0Mayorista: *$" + sellRate + "*"; //result.get(0).getSellRate() + "*" +
-            Double diff = (currencyService.findLastMaePrice()) - sellRate;
-            if (diff > 0){
-                text = text + "%0A\uD83D\uDCC9 $(" + (diff) + ")";
-            } else if (diff < 0){
-                text = text + "%0A\uD83D\uDCC8 $" + (diff  * -1);
-            }else {
-                text = text + "%0A\uD83D\uDCCA $" + (diff);
-            }
-            //"%0A\uD83D\uDCC9 $(0.25)" +
-            //"%0A\uD83D\uDCC8 $0.15" +
-            text = text +   "%0A" +
-                    "%0A\uD83C\uDF10 [FinancialApp](http://financialfront.herokuapp.com/currencies/)" +
-                    "%0A [%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B](" + result.get(0).getEvolucionForexChartPaint() + ")";
-            String parseMode = "MARKDOWN";
+            if (currencyService.findLastMaePrice() > 65) {
+                String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s&parse_mode=%s";
+                String apiToken4Gruop = "814592888:AAED7aTvtOGpuE1WiWXtfL8KjQrxv2ggfwo";
+                String apiToken = "825328580:AAG1acLV0No7awRgIurNwjWDcdq0WrJjjwg";
+                String chatId4Gruop = "-271523446";
+                String chatId = "591887299";
+                String text = "%0A" +
+                        "%0A\uD83D\uDCB0Mayorista: *$" + sellRate + "*"; //result.get(0).getSellRate() + "*" +
+                Double diff = (currencyService.findLastMaePrice()) - sellRate;
+                if (diff > 0) {
+                    text = text + "%0A\uD83D\uDCC9 $(" + (diff) + ")";
+                } else if (diff < 0) {
+                    text = text + "%0A\uD83D\uDCC8 $" + (diff * -1);
+                } else {
+                    text = text + "%0A\uD83D\uDCCA $" + (diff);
+                }
+                //"%0A\uD83D\uDCC9 $(0.25)" +
+                //"%0A\uD83D\uDCC8 $0.15" +
+                text = text + "%0A" +
+                        "%0A\uD83C\uDF10 [FinancialApp](http://financialfront.herokuapp.com/currencies/)" +
+                        "%0A [%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B%E2%80%8B](" + result.get(0).getEvolucionForexChartPaint() + ")";
+                String parseMode = "MARKDOWN";
 
-            urlString = String.format(urlString, apiToken4Gruop, chatId4Gruop, text, parseMode);
+                urlString = String.format(urlString, apiToken4Gruop, chatId4Gruop, text, parseMode);
 
-            URL url = new URL(urlString);
-            URLConnection conn = url.openConnection();
+                URL url = new URL(urlString);
+                URLConnection conn = url.openConnection();
 
-            StringBuilder sb = new StringBuilder();
-            InputStream is = new BufferedInputStream(conn.getInputStream());
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String inputLine = "";
-            while ((inputLine = br.readLine()) != null) {
-                sb.append(inputLine);
-            }
-            String response = sb.toString();
-            JSONObject jsonBI = new JSONObject(response);
-            if(!jsonBI.getBoolean("ok")){
-                log.info(jsonBI.toString());
+                StringBuilder sb = new StringBuilder();
+                InputStream is = new BufferedInputStream(conn.getInputStream());
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String inputLine = "";
+                while ((inputLine = br.readLine()) != null) {
+                    sb.append(inputLine);
+                }
+                String response = sb.toString();
+                JSONObject jsonBI = new JSONObject(response);
+                if (!jsonBI.getBoolean("ok")) {
+                    log.info(jsonBI.toString());
+                }
             }
         }catch (Exception e){
             log.info(e.toString());

@@ -2,11 +2,7 @@ package com.financialapp.repository;
 
 import com.financialapp.model.Currency;
 import com.financialapp.util.StringUtils;
-import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
@@ -18,9 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository("provinciaBACrawler")
-public class ProvinciaBACrawlerImp implements GenericCrawler{
+public class ProvinciaBACrawlerImp implements GenericCrawler {
+    @Value("${app.currency.default-sell-tax-percentage}")
+    private Double sellTaxPercentage;
 
-    public List<Currency> findCurrency(){
+    public List<Currency> findCurrency() {
         return this.CrawlerProvinciaBACurrency();
     }
 
@@ -39,11 +37,14 @@ public class ProvinciaBACrawlerImp implements GenericCrawler{
             String replaceStringBI = jsonTextBI.replaceAll("\\[", "");
             replaceStringBI = replaceStringBI.replaceAll("\\]", "");
             String[] arry = replaceStringBI.split(",");
-            currency.add(new Currency("DOLAR","USD", StringUtils.stringToDoubleNumber(arry[0]), StringUtils.stringToDoubleNumber(arry[1])));
+            currency.add(new Currency("DOLAR", "USD",
+                    StringUtils.stringToDoubleNumber(arry[0]),
+                    StringUtils.stringToDoubleNumber(arry[1]),
+                    sellTaxPercentage));
 
             return currency;
-        }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
+        } catch (Exception e) {
+            currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, sellTaxPercentage));
 
             return currency;
         }

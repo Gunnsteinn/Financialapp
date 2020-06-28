@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,8 +15,10 @@ import java.util.List;
 
 @Repository("nacionCrawler")
 public class NacionCrawlerImp implements GenericCrawler {
+    @Value("${app.currency.default-sell-tax-percentage}")
+    private Double sellTaxPercentage;
 
-    public List<Currency> findCurrency(){
+    public List<Currency> findCurrency() {
         return this.CrawlerNacionCurrency();
     }
 
@@ -30,7 +33,7 @@ public class NacionCrawlerImp implements GenericCrawler {
                 for (Element row : table.select("tr")) {
                     JSONObject jsonObject = new JSONObject();
                     Elements tds = row.select("td");
-                    if (tds.size() > 0){
+                    if (tds.size() > 0) {
                         String type = tds.get(0).text();
                         String code = tds.get(0).text();
                         String buy = tds.get(1).text();
@@ -39,23 +42,28 @@ public class NacionCrawlerImp implements GenericCrawler {
                         jsonObject.put("sell", sell);
                         Double buyFix = 0.0;
                         Double sellFix = 0.0;
-                        if (StringUtils.stringTypeNormalize(type).equalsIgnoreCase("REAL")){
-                            buyFix = StringUtils.stringToDoubleNumber(buy)/100;
-                            sellFix = StringUtils.stringToDoubleNumber(sell)/100;
-                        }else{
+                        if (StringUtils.stringTypeNormalize(type).equalsIgnoreCase("REAL")) {
+                            buyFix = StringUtils.stringToDoubleNumber(buy) / 100;
+                            sellFix = StringUtils.stringToDoubleNumber(sell) / 100;
+                        } else {
                             buyFix = StringUtils.stringToDoubleNumber(buy);
                             sellFix = StringUtils.stringToDoubleNumber(sell);
                         }
-                        currency.add(new Currency( StringUtils.stringTypeNormalize(type), StringUtils.stringCodeNormalize(code), buyFix, sellFix));
-                        jsonParentObject4.put(StringUtils.stringTypeNormalize(type),jsonObject);
+                        currency.add(new Currency(StringUtils.stringTypeNormalize(type),
+                                StringUtils.stringCodeNormalize(code),
+                                buyFix,
+                                sellFix,
+                                sellTaxPercentage));
+
+                        jsonParentObject4.put(StringUtils.stringTypeNormalize(type), jsonObject);
                     }
                 }
             }
 
             return currency;
-        }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
-            currency.add(new Currency("EURO","EUR",0.0,0.0));
+        } catch (Exception e) {
+            currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, sellTaxPercentage));
+            currency.add(new Currency("EURO", "EUR", 0.0, 0.0, sellTaxPercentage));
 
             return currency;
         }

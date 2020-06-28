@@ -1,0 +1,30 @@
+README.md
+target/
+output/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+*.orig
+mockserver*.log
+logs
+out/
+.mvn
+.gradle
+gradle
+nohup.out
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.idea

@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,8 +15,10 @@ import java.util.List;
 
 @Repository("patagoniaCrawler")
 public class PatagoniaCrawlerImp implements GenericCrawler {
+    @Value("${app.currency.default-sell-tax-percentage}")
+    private Double sellTaxPercentage;
 
-    public List<Currency> findCurrency(){
+    public List<Currency> findCurrency() {
         return this.CrawlerPatagoniaCurrency();
     }
 
@@ -30,23 +33,29 @@ public class PatagoniaCrawlerImp implements GenericCrawler {
                 for (Element row : table.select("tr")) {
                     JSONObject jsonObject = new JSONObject();
                     Elements tds = row.select("td");
-                    if (tds.size() > 0){
+                    if (tds.size() > 0) {
                         String type = tds.get(0).text();
                         String code = tds.get(0).text();
                         String buy = tds.get(1).text();
                         String sell = tds.get(2).text();
                         jsonObject.put("buy", buy);
                         jsonObject.put("sell", sell);
-                        currency.add(new Currency( StringUtils.stringTypeNormalize(type), StringUtils.stringCodeNormalize(code), StringUtils.stringToDoubleNumber(buy), StringUtils.stringToDoubleNumber(sell)));
-                        jsonParentObject1.put(StringUtils.stringTypeNormalize(type),jsonObject);
+
+                        currency.add(new Currency(StringUtils.stringTypeNormalize(type),
+                                StringUtils.stringCodeNormalize(code),
+                                StringUtils.stringToDoubleNumber(buy),
+                                StringUtils.stringToDoubleNumber(sell),
+                                sellTaxPercentage));
+
+                        jsonParentObject1.put(StringUtils.stringTypeNormalize(type), jsonObject);
                     }
                 }
             }
 
             return currency;
-        }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
-            currency.add(new Currency("EURO","EUR",0.0,0.0));
+        } catch (Exception e) {
+            currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, sellTaxPercentage));
+            currency.add(new Currency("EURO", "EUR", 0.0, 0.0, sellTaxPercentage));
 
             return currency;
         }

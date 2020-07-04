@@ -3,6 +3,7 @@ package com.financialapp.repository;
 import com.financialapp.model.Currency;
 import com.financialapp.util.StringUtils;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
@@ -15,10 +16,13 @@ import java.util.List;
 
 @Repository("icbcCrawler")
 public class ICBCCrawlerImp implements GenericCrawler {
+    @Value("${app.currency.default-sell-tax-percentage}")
+    private Double sellTaxPercentage;
 
     public List<Currency> findCurrency() {
         return this.CrawlerICBCCurrency();
     }
+
     private List<Currency> CrawlerICBCCurrency() {
         List<Currency> currency = new ArrayList<Currency>();
         try {
@@ -34,11 +38,13 @@ public class ICBCCrawlerImp implements GenericCrawler {
             String replaceStringBI = jsonTextBI.replaceAll("\\bvalorCompra\\b", "buyRate");
             replaceStringBI = replaceStringBI.replaceAll("\\bvalorVenta\\b", "sellRate");
             JSONObject jsonBI = new JSONObject(replaceStringBI);
-            currency.add(new Currency("DOLAR","USD", StringUtils.stringToDoubleNumber(jsonBI.getString("buyRate")), StringUtils.stringToDoubleNumber(jsonBI.getString("sellRate"))));
+            currency.add(new Currency("DOLAR", "USD", StringUtils.stringToDoubleNumber(jsonBI.getString("buyRate")),
+                    StringUtils.stringToDoubleNumber(jsonBI.getString("sellRate")),
+                    sellTaxPercentage));
 
             return currency;
-        }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
+        } catch (Exception e) {
+            currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, sellTaxPercentage));
 
             return currency;
         }

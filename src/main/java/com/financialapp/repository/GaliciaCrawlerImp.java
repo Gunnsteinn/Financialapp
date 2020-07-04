@@ -3,6 +3,7 @@ package com.financialapp.repository;
 import com.financialapp.model.Currency;
 import com.financialapp.util.StringUtils;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
@@ -15,6 +16,8 @@ import java.util.List;
 
 @Repository("galiciaCrawler")
 public class GaliciaCrawlerImp implements GenericCrawler {
+    @Value("${app.currency.default-sell-tax-percentage}")
+    private Double sellTaxPercentage;
 
     public List<Currency> findCurrency() {
         return this.CrawlerGaliciaCurrency();
@@ -36,7 +39,10 @@ public class GaliciaCrawlerImp implements GenericCrawler {
             String replaceString = jsonText.replaceAll("\\bbuy\\b", "buyRate");
             replaceString = replaceString.replaceAll("\\bsell\\b", "sellRate");
             JSONObject json = new JSONObject(replaceString);
-            currency.add(new Currency("DOLAR","USD", StringUtils.stringToDoubleNumber(json.getString("buyRate")),StringUtils.stringToDoubleNumber(json.getString("sellRate"))));
+            currency.add(new Currency("DOLAR","USD",
+                    StringUtils.stringToDoubleNumber(json.getString("buyRate")),
+                    StringUtils.stringToDoubleNumber(json.getString("sellRate")),
+                    sellTaxPercentage));
 
             InputStream euro = new URL("https://www.bancogalicia.com/cotizacion/cotizar?currencyId=98&quoteType=SU&quoteId=999").openStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(euro, Charset.forName("UTF-8")));
@@ -50,11 +56,14 @@ public class GaliciaCrawlerImp implements GenericCrawler {
             String replaceString1 = jsonText1.replaceAll("\\bbuy\\b", "buyRate");
             replaceString1 = replaceString1.replaceAll("\\bsell\\b", "sellRate");
             JSONObject json1 = new JSONObject(replaceString1);
-                            currency.add(new Currency("EURO","EUR",StringUtils.stringToDoubleNumber(json1.getString("buyRate")),StringUtils.stringToDoubleNumber(json1.getString("sellRate"))));
+                            currency.add(new Currency("EURO", "EUR",
+                                    StringUtils.stringToDoubleNumber(json1.getString("buyRate")),
+                                    StringUtils.stringToDoubleNumber(json1.getString("sellRate")),
+                                    sellTaxPercentage));
             return currency;
         }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
-            currency.add(new Currency("EURO","EUR",0.0,0.0));
+            currency.add(new Currency("DOLAR","USD",0.0,0.0, sellTaxPercentage));
+            currency.add(new Currency("EURO","EUR",0.0,0.0, sellTaxPercentage));
             return currency;
         }
     }

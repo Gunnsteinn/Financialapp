@@ -1,17 +1,23 @@
 package com.financialapp.model;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 public class Currency {
 
     String type;
     String code;
     Double buyRate;
     Double sellRate;
+    Double sellTaxPercentage;
 
-    public Currency(String type,String code, Double buyRate, Double sellRate) {
+    public Currency(String type, String code, Double buyRate, Double sellRate, Double sellTaxPercentage) {
         this.type = type;
         this.code = code;
         this.buyRate = buyRate;
         this.sellRate = sellRate;
+        this.sellTaxPercentage = sellTaxPercentage;
     }
 
     public String getType() {
@@ -44,5 +50,10 @@ public class Currency {
 
     public void setSellRate(Double sellRate) {
         this.sellRate = sellRate;
+    }
+
+    public Double getSellRateWithTax() {
+        BigDecimal rate =BigDecimal.valueOf(this.sellRate + (this.sellRate * this.sellTaxPercentage));
+        return rate.setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }

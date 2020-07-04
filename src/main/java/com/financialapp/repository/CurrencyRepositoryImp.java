@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Repository("currencyRepository")
-public class CurrencyRepositoryImp implements CurrencyRepository{
+public class CurrencyRepositoryImp implements CurrencyRepository {
 
     private List<Currency> currency;
     private List<Bank> allCurrencies;
@@ -37,27 +37,27 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
 
     @Autowired
     @Qualifier("nacionCrawler")
-    GenericCrawler nacionCrawler ;
+    GenericCrawler nacionCrawler;
 
     @Autowired
     @Qualifier("patagoniaCrawler")
-    GenericCrawler patagoniaCrawler ;
+    GenericCrawler patagoniaCrawler;
 
     @Autowired
     @Qualifier("santanderRioCrawler")
-    GenericCrawler santanderRioCrawler ;
+    GenericCrawler santanderRioCrawler;
 
     @Autowired
     @Qualifier("bancorCrawler")
-    GenericCrawler bancorCrawler ;
+    GenericCrawler bancorCrawler;
 
     @Autowired
     @Qualifier("supervielleCrawler")
-    GenericCrawler supervielleCrawler ;
+    GenericCrawler supervielleCrawler;
 
     @Autowired
     @Qualifier("provinciaBACrawler")
-    GenericCrawler provinciaBACrawler ;
+    GenericCrawler provinciaBACrawler;
 
     @Autowired
     @Qualifier("maeCrawler")
@@ -67,8 +67,8 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
         try {
             return maeCrawler.findMae();
         } catch (Exception e) {
-            mae.add(new Mae("CAM1", "UST / ART 000", "0", 0.0,""));
-            maeTotalData.add(new MaeTotalData("",mae));
+            mae.add(new Mae("CAM1", "UST / ART 000", "0", 0.0, ""));
+            maeTotalData.add(new MaeTotalData("", mae));
             return maeTotalData;
         }
     }
@@ -95,32 +95,32 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
                 case "BC":
                     return bancorCrawler.findCurrency();
                 default:
-                    currency.add(new Currency("DOLAR","USD",0.0,0.0));
-                    currency.add(new Currency("EURO","EUR",0.0,0.0));
+                    currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, 0.0));
+                    currency.add(new Currency("EURO", "EUR", 0.0, 0.0, 0.0));
                     return currency;
             }
-        }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
-            currency.add(new Currency("EURO","EUR",0.0,0.0));
+        } catch (Exception e) {
+            currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, 0.0));
+            currency.add(new Currency("EURO", "EUR", 0.0, 0.0, 0.0));
             return currency;
         }
     }
 
     List<Callable<Bank>> callables = Arrays.asList(
-            () -> new Bank("Banco de la Nación Argentina",nacionCrawler.findCurrency()),
-            () -> new Bank("Banco Santander Rio",santanderRioCrawler.findCurrency()),
-            () -> new Bank("Banco BBVA Francés",francesCrawler.findCurrency()),
-            () -> new Bank("Banco Galicia",galiciaCrawler.findCurrency()),
-            () -> new Bank("Banco Patagonia",patagoniaCrawler.findCurrency()),
-            () -> new Bank("Banco ICBC",icbcCrawler.findCurrency()),
-            () -> new Bank("Banco SuperVielle",supervielleCrawler.findCurrency()),
-            () -> new Bank("Banco Provincia de Buenos Aires",provinciaBACrawler.findCurrency()),
-            () -> new Bank("Banco Provincia de Córdoba",bancorCrawler.findCurrency())
+            () -> new Bank("Banco de la Nación Argentina", nacionCrawler.findCurrency()),
+            () -> new Bank("Banco Santander Rio", santanderRioCrawler.findCurrency()),
+            () -> new Bank("Banco BBVA", francesCrawler.findCurrency()),
+            () -> new Bank("Banco Galicia", galiciaCrawler.findCurrency()),
+            () -> new Bank("Banco Patagonia", patagoniaCrawler.findCurrency()),
+            () -> new Bank("Banco ICBC", icbcCrawler.findCurrency()),
+            () -> new Bank("Banco SuperVielle", supervielleCrawler.findCurrency()),
+            () -> new Bank("Banco Provincia de Buenos Aires", provinciaBACrawler.findCurrency()),
+            () -> new Bank("Banco Provincia de Córdoba", bancorCrawler.findCurrency())
     );
 
     public List<Bank> findAllCrawlerCurrency() {
         try {
-            Long start = System.currentTimeMillis()/1000;
+            Long start = System.currentTimeMillis() / 1000;
             List<Bank> allCurrencies = new ArrayList<Bank>();
             ExecutorService executor = Executors.newWorkStealingPool();
             executor.invokeAll(callables)
@@ -128,27 +128,26 @@ public class CurrencyRepositoryImp implements CurrencyRepository{
                     .map(future -> {
                         try {
                             return future.get();
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             throw new IllegalStateException(e);
                         }
                     })
                     .forEach(item -> allCurrencies.add(item));
-            System.out.println("Finish: " + (System.currentTimeMillis()/1000-start));
+            System.out.println("Finish: " + (System.currentTimeMillis() / 1000 - start));
             return allCurrencies;
-        }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
-            currency.add(new Currency("EURO","EUR",0.0,0.0));
+        } catch (Exception e) {
+            currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, 0.0));
+            currency.add(new Currency("EURO", "EUR", 0.0, 0.0, 0.0));
 
             List<Bank> allCurrencies = new ArrayList<Bank>();
-            allCurrencies.add(new Bank("Santander Rio",currency));
-            allCurrencies.add(new Bank("Banco de la Nación Argentina",currency));
-            allCurrencies.add(new Bank("Banco Patagonia",currency));
-            allCurrencies.add(new Bank("BBVA Francés",currency));
-            allCurrencies.add(new Bank("Banco Galicia",currency));
-            allCurrencies.add(new Bank("Banco ICBC",currency));
-            allCurrencies.add(new Bank("Banco SuperVille",currency));
-            allCurrencies.add(new Bank("Banco Provincia",currency));
+            allCurrencies.add(new Bank("BancoSantander Rio", currency));
+            allCurrencies.add(new Bank("Banco de la Nación Argentina", currency));
+            allCurrencies.add(new Bank("Banco Patagonia", currency));
+            allCurrencies.add(new Bank("Banco BBVA", currency));
+            allCurrencies.add(new Bank("Banco Galicia", currency));
+            allCurrencies.add(new Bank("Banco ICBC", currency));
+            allCurrencies.add(new Bank("Banco SuperVille", currency));
+            allCurrencies.add(new Bank("Banco Provincia", currency));
 
             return allCurrencies;
         }

@@ -14,15 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 @Service("currencyService")
-public class CurrencyServiceImp implements CurrencyService{
+public class CurrencyServiceImp implements CurrencyService {
 
     private List<Currency> currency;
-    private List<Bank> allCurrencies;
     private static final Logger log = LoggerFactory.getLogger(CurrencyServiceImp.class);
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -32,9 +31,9 @@ public class CurrencyServiceImp implements CurrencyService{
     public List<Currency> findParticularCurrency(String bank) {
         try {
             return currencyRepository.findCrawlerCurrency(bank);
-        }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
-            currency.add(new Currency("EURO","EUR",0.0,0.0));
+        } catch (Exception e) {
+            currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, 0.0));
+            currency.add(new Currency("EURO", "EUR", 0.0, 0.0, 0.0));
             return currency;
         }
     }
@@ -44,23 +43,23 @@ public class CurrencyServiceImp implements CurrencyService{
         try {
             log.info("Time to Crawler. {}", dateFormat.format(new Date()));
             return currencyRepository.findAllCrawlerCurrency();
-        }catch (Exception e){
-            currency.add(new Currency("DOLAR","USD",0.0,0.0));
-            currency.add(new Currency("EURO","EUR",0.0,0.0));
+        } catch (Exception e) {
+            currency.add(new Currency("DOLAR", "USD", 0.0, 0.0, 0.0));
+            currency.add(new Currency("EURO", "EUR", 0.0, 0.0, 0.0));
 
             List<Bank> allCurrencies = new ArrayList<>();
-            allCurrencies.add(new Bank("Santander Rio",currency));
-            allCurrencies.add(new Bank("Banco de la Nación Argentina",currency));
-            allCurrencies.add(new Bank("Banco Patagonia",currency));
-            allCurrencies.add(new Bank("BBVA Francés",currency));
-            allCurrencies.add(new Bank("Banco Galicia",currency));
-            allCurrencies.add(new Bank("Banco ICBC",currency));
+            allCurrencies.add(new Bank("Santander Rio", currency));
+            allCurrencies.add(new Bank("Banco de la Nación Argentina", currency));
+            allCurrencies.add(new Bank("Banco Patagonia", currency));
+            allCurrencies.add(new Bank("BBVA Francés", currency));
+            allCurrencies.add(new Bank("Banco Galicia", currency));
+            allCurrencies.add(new Bank("Banco ICBC", currency));
 
             return allCurrencies;
         }
     }
 
-    @CacheEvict(cacheNames="bank", allEntries=true)
+    @CacheEvict(cacheNames = "bank", allEntries = true)
     public String resetAllEntries() {
         return "Reset Cache all Currencies " + dateFormat.format(new Date());
     }
@@ -76,12 +75,12 @@ public class CurrencyServiceImp implements CurrencyService{
                 }
             }
             return sellRate;
-        }catch (Exception e){
+        } catch (Exception e) {
             return 0.0;
         }
     }
 
-    @CacheEvict(cacheNames="maePrice", allEntries=true)
+    @CacheEvict(cacheNames = "maePrice", allEntries = true)
     public String resetLastMaePrice() {
         return "Reset LastMaePrice Cache " + dateFormat.format(new Date());
     }
@@ -91,7 +90,7 @@ public class CurrencyServiceImp implements CurrencyService{
         return findAllCurrency();
     }
 
-    @CacheEvict(cacheNames="openBank", allEntries=true)
+    @CacheEvict(cacheNames = "openBank", allEntries = true)
     public String resetOpenCurrencies() {
         return "Reset Open Currencies " + dateFormat.format(new Date());
     }
